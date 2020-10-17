@@ -40,24 +40,32 @@
 															<div class="alert-text">The measurement unit of earthquake is based on richter scale, intensity calculator is meant to compare two magnitudes of earthquakes so as to find out how many times as intense as one of them is another. </div>
 														</div>
 													</div>
-                                       <div class="form-group">
-														<label>Earthquake 1</label>
-														<input type="number" class="form-control" id="magnitude1" v-model.number="magnitude1" placeholder="Enter magnitude">
+                                                   <form action="/Api/MHF4U/Earthquake/Intensity" type="POST" id="intensity">
+                                                       <div class="form-group">
+                                                            <label>Earthquake 1</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude1" v-model.number="magnitude1" placeholder="Enter magnitude" required>
+                                                        </div>
+                                                       <div class="form-group">
+                                                            <label>Earthquake 2</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude2" v-model.number="magnitude2" placeholder="Enter magnitude" required>
+                                                        </div>
+                                                       <div class="form-group">
+                                                            <label>Decimal places</label>
+                                                            <input type="number" class="form-control" min="0" max="10" id="decimal" v-model.number="decimal" placeholder="Enter the result decimal places from 0 to 10" required>
+                                                        </div>
+                                                       <div class="form-group">
+                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="button" onclick="switchNum()" class="btn btn-secondary mr-2">Switch</button>
+                                                           <button type="button" class="btn btn-danger mr-2">Clear</button>
+                                                       </div>
+                                                   </form>
+                                                   <div class="example mb-15">
+													<div class="example-preview text-center">
+														<blockquote class="blockquote">
+															<p class="mb-0" id="ResultIntensity">Let's try some calculations!</p>
+														</blockquote>
 													</div>
-                                       <div class="form-group">
-														<label>Earthquake 2</label>
-														<input type="number" class="form-control" id="magnitude2" v-model.number="magnitude2" placeholder="Enter magnitude">
-													</div>
-                                       <div class="form-group">
-                                       <button type="button" class="btn btn-primary mr-2">Calculate</button>
-                                       <button type="button" onclick="switchNum()" class="btn btn-secondary mr-2">Switch</button>
-                                       <button type="button" class="btn btn-danger mr-2">Clear</button>
-                                       </div>
-                                       <div class="separator separator-solid"></div>
-                                       <div class="text-center" id="ResultIntensity" style="visibility: hidden">
-                                           <h3><small class="text-muted">Earthquake 1 is </small>{[ times ]}<small class="text-muted"> times as intense as earthquake 2</small></h3>
-                                       </div>
-
+												    </div>
                                    </div>
                                   </div>
                                  </div>
@@ -83,23 +91,40 @@
 		<!--end::Page Scripts-->
 
         <script>
-            function switchNum() {
+        $(document).ready(function (){
+            $('#intensity').on('submit',function(event){
+                $.ajax({
+                    data:{
+                        magnitude1:app.$data.magnitude1,
+                        magnitude2:app.$data.magnitude2,
+                        decimal:app.$data.decimal
+                    },
+                    type:'POST',
+                    url:'/Api/MHF4U/Earthquake/Intensity'
+                }).done(function (data){
+                    $('#ResultIntensity').text(data)
+                    });
+
+                event.preventDefault();
+            })
+        })
+
+        function switchNum() {
             M1 = $('#magnitude1').val()
             M2 = $('#magnitude2').val()
                 $('#magnitude1').val(M2)
                 $('#magnitude2').val(M1)
-
+                app.$set(app.$data,'magnitude1',M2)
+                app.$set(app.$data,'magnitude2',M1)
         }
 
         var app = new Vue({
             el:'#Intensity',
             delimiters:['{[', ']}'],
             data:{
-                times:'Hello Vue.js',
-                magnitude1:null,
-                magnitude2:null,
-            },
-            method: {
+                magnitude1:'',
+                magnitude2:'',
+                decimal:0
             }
         })
         </script>
