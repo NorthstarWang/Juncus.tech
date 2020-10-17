@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    {{ super() }}
 <!--begin::Entry-->
 						<div class="d-flex flex-column-fluid">
 
@@ -51,4 +51,18 @@
 						</div>
 
 						<!--end::Entry-->
+{% endblock %}
+
+{% block script %}
+    <!--begin::Global Theme Bundle(used by all pages)-->
+		<script src="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/scripts.bundle.js') }}"></script>
+
+		<!--end::Global Theme Bundle-->
+
+		<!--begin::Page Scripts(used by this page)-->
+		<script src="{{ url_for('static', filename='assets/js/pages/widgets.js') }}"></script>
+
+		<!--end::Page Scripts-->
 {% endblock %}
