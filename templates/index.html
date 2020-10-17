@@ -1,148 +1,54 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+    {{ super() }}
+<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
 
-<!--
-Template Name: Keen - The Ultimate Bootstrap 4 HTML Admin Dashboard Theme
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/
-Support: https://keenthemes.com/theme-support
-License: You must have a valid license purchased only from themes.getbootstrap.com(the above link) in order to legally use the theme for your project.
--->
-<html lang="en">
+							<!--begin::Container-->
+							<div class="container-fluid">
 
-	<!--begin::Head-->
-	<head>
-		<base href="../static/">
-		<meta charset="utf-8" />
-		<title>Main</title>
-		<meta name="description" content="Updates and statistics" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+								<!--[html-partial:begin:{"id":"demo6/dist/inc/view/demos/pages/index","page":"index"}]/-->
 
-		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+								<!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dashboards/demo6","page":"index"}]/-->
 
-		<!--end::Fonts-->
+								<!--begin::Dashboard-->
+                                <div class="row">
 
-		<!--begin::Page Vendors Styles(used by this page)-->
-		<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+									<div class="col-lg-12 col-xl-12 mb-12">
+										<!--begin::Iconbox-->
+										<div class="card card-custom wave wave-animate wave-success mb-8 mb-lg-0">
+											<div class="card-body">
+												<div class="d-flex align-items-center p-5">
+													<div class="mr-6">
+														<span class="svg-icon svg-icon-success svg-icon-4x">
+															<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Sketch.svg-->
+															<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<rect x="0" y="0" width="24" height="24" />
+																	<polygon fill="#000000" opacity="0.3" points="5 3 19 3 23 8 1 8" />
+																	<polygon fill="#000000" points="23 8 12 20 1 8" />
+																</g>
+															</svg>
+															<!--end::Svg Icon-->
+														</span>
+													</div>
+													<div class="d-flex flex-column">
+														<a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Hi! Visitors:</a>
+														<div class="text-dark-75">Try out the calculators specifically designed for high school students! Hope you enjoy it! Click the icon near Index to start your navigation.</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--end::Iconbox-->
+									</div>
+								</div>
+								<!--[html-partial:end:{"id":"demo1/dist/inc/view/partials/content/dashboards/demo6","page":"index"}]/-->
 
-		<!--end::Page Vendors Styles-->
+								<!--[html-partial:end:{"id":"demo6/dist/inc/view/demos/pages/index","page":"index"}]/-->
+							</div>
 
-		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+							<!--end::Container-->
+						</div>
 
-		<!--end::Global Theme Styles-->
-
-		<!--begin::Layout Themes(used by all pages)-->
-
-		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
-	</head>
-
-	<!--end::Head-->
-
-	<!--begin::Body-->
-	<body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
-
-        {% include 'partials/_page-loader.html'%}
-
-        {% include'layout.html' %}
-
-        {% include 'partials/_extras/scrolltop.html' %}
-
-        {% include 'partials/_extras/offcanvas/quick-user.html' %}
-
-		<script>
-			var HOST_URL = "https://preview.keenthemes.com/keen/theme/tools/preview";
-		</script>
-
-		<!--begin::Global Config(global config for global JS scripts)-->
-		<script>
-			var KTAppSettings = {
-				"breakpoints": {
-					"sm": 576,
-					"md": 768,
-					"lg": 992,
-					"xl": 1200,
-					"xxl": 1200
-				},
-				"colors": {
-					"theme": {
-						"base": {
-							"white": "#ffffff",
-							"primary": "#0BB783",
-							"secondary": "#E5EAEE",
-							"success": "#1BC5BD",
-							"info": "#8950FC",
-							"warning": "#FFA800",
-							"danger": "#F64E60",
-							"light": "#F3F6F9",
-							"dark": "#212121"
-						},
-						"light": {
-							"white": "#ffffff",
-							"primary": "#D7F9EF",
-							"secondary": "#ECF0F3",
-							"success": "#C9F7F5",
-							"info": "#EEE5FF",
-							"warning": "#FFF4DE",
-							"danger": "#FFE2E5",
-							"light": "#F3F6F9",
-							"dark": "#D6D6E0"
-						},
-						"inverse": {
-							"white": "#ffffff",
-							"primary": "#ffffff",
-							"secondary": "#212121",
-							"success": "#ffffff",
-							"info": "#ffffff",
-							"warning": "#ffffff",
-							"danger": "#ffffff",
-							"light": "#464E5F",
-							"dark": "#ffffff"
-						}
-					},
-					"gray": {
-						"gray-100": "#F3F6F9",
-						"gray-200": "#ECF0F3",
-						"gray-300": "#E5EAEE",
-						"gray-400": "#D6D6E0",
-						"gray-500": "#B5B5C3",
-						"gray-600": "#80808F",
-						"gray-700": "#464E5F",
-						"gray-800": "#1B283F",
-						"gray-900": "#212121"
-					}
-				},
-				"font-family": "Poppins"
-			};
-		</script>
-
-		<!--end::Global Config-->
-
-		<!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
-
-		<!--end::Global Theme Bundle-->
-
-		<!--begin::Page Vendors(used by this page)-->
-		<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-
-		<!--end::Page Vendors-->
-
-		<!--begin::Page Scripts(used by this page)-->
-		<script src="assets/js/pages/widgets.js"></script>
-
-		<!--end::Page Scripts-->
-	</body>
-
-	<!--end::Body-->
-</html>
+						<!--end::Entry-->
+{% endblock %}
