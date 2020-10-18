@@ -16,6 +16,11 @@
                                      <span class="nav-text">Intensity</span>
                                      </a>
                                     </li>
+                                       <li class="nav-item">
+                                     <a class="nav-link" data-toggle="tab" href="#Energy">
+                                     <span class="nav-text">Energy Converter</span>
+                                     </a>
+                                    </li>
                                    </ul>
                                   </div>
                                  </div>
@@ -37,40 +42,177 @@
 																	<!--end::Svg Icon-->
 																</span>
 															</div>
-															<div class="alert-text">The measurement unit of earthquake is based on richter scale, intensity calculator is meant to compare two magnitudes of earthquakes so as to find out how many times as intense as one of them is another. </div>
+															<div class="alert-text">The measurement unit of earthquake is based on richter scale, intensity calculator is meant to compare two magnitudes of earthquakes so as to find out how many times as intense as one of them is another.
+                                                            <math indentalign="center" xmlns="http://www.w3.org/1998/Math/MathML">
+                                                              <mspace linebreak="newline" />
+                                                              <mspace width="100px" />
+                                                              <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mrow> <mi> M </mi> </mrow> <mrow> <mi> L </mi> </mrow> </msub> <mo> = </mo> <msub> <mrow> <mi> log </mi> </mrow> <mrow> <mn> 10 </mn> </mrow> </msub> <mrow> <mo> ( </mo> <mfrac> <mrow> <mi> I </mi> </mrow> <mrow> <mi> S </mi> </mrow> </mfrac> <mo> ) </mo> </mrow> </math>
+                                                              <mspace linebreak="newline" />
+                                                              <mspace width="100px" />
+                                                              <mi>I</mi>
+                                                              <mo>:</mo>
+                                                              <mi>Intensity of earthquake</mi>
+                                                              <mo>,</mo>
+                                                              <mtext>&#xA0;</mtext>
+                                                              <mi>S</mi>
+                                                              <mo>:</mo>
+                                                              <mi>Intensity of 'Standard earthquake'</mi>
+                                                              <mspace linebreak="newline" />
+                                                            </math></div>
 														</div>
 													</div>
                                                    <form action="/Api/MHF4U/Earthquake/Intensity" type="POST" id="intensity">
-                                                       <div class="form-group">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Earthquake 1</label>
                                                             <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude1" v-model.number="magnitude1" placeholder="Enter magnitude" required>
+                                                           </div>
                                                         </div>
-                                                       <div class="form-group">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Earthquake 2</label>
                                                             <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude2" v-model.number="magnitude2" placeholder="Enter magnitude" required>
+                                                           </div>
                                                         </div>
-                                                       <div class="form-group">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Decimal places</label>
                                                             <input type="number" class="form-control" min="0" max="10" id="decimal" v-model.number="decimal" placeholder="Enter the result decimal places from 0 to 10" required>
+                                                           </div>
                                                         </div>
-                                                       <div class="form-group">
+                                                       <div class="form-group row justify-content-center">
                                                            <button type="submit" class="btn btn-primary mr-2">Calculate</button>
                                                            <button type="button" onclick="switchNum()" class="btn btn-secondary mr-2">Switch</button>
-                                                           <button type="button" class="btn btn-danger mr-2">Clear</button>
+                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
                                                        </div>
                                                    </form>
-                                                   <div class="example mb-15">
-													<div class="example-preview text-center">
+                                                   <div class="example mb-15 row justify-content-center">
+													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
 														<blockquote class="blockquote">
 															<p class="mb-0" id="ResultIntensity">Let's try some calculations!</p>
 														</blockquote>
 													</div>
 												    </div>
                                    </div>
+                                      <div class="tab-pane fade" role="tabpanel" id="Energy" aria-labelledby="Energy" >
+                                          <div class="form-group mb-8">
+														<div class="alert alert-custom alert-default" role="alert">
+															<div class="alert-icon">
+																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																			<rect x="0" y="0" width="24" height="24"></rect>
+																			<path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3"></path>
+																			<path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero"></path>
+																		</g>
+																	</svg>
+																	<!--end::Svg Icon-->
+																</span>
+															</div>
+															<div class="alert-text">
+                                                                <math indentalign="center" xmlns="http://www.w3.org/1998/Math/MathML">
+                                                              <mspace linebreak="newline" />
+                                                              <mspace width="100px" />
+                                                              <msub>
+                                                                <mi>log</mi>
+                                                                <mrow class="MJX-TeXAtom-ORD">
+                                                                  <mn>10</mn>
+                                                                </mrow>
+                                                              </msub>
+                                                              <mo>&#x2061;<!-- ⁡ --></mo>
+                                                              <mi>J</mi>
+                                                              <mo>=</mo>
+                                                              <mn>4.8</mn>
+                                                              <mo>+</mo>
+                                                              <mn>1.5</mn>
+                                                              <mi>M</mi>
+                                                              <mspace linebreak="newline" />
+                                                              <mspace width="100px" />
+                                                              <mi>M</mi>
+                                                              <mo>:</mo>
+                                                              <mi>M</mi>
+                                                              <mi>a</mi>
+                                                              <mi>g</mi>
+                                                              <mi>n</mi>
+                                                              <mi>i</mi>
+                                                              <mi>t</mi>
+                                                              <mi>u</mi>
+                                                              <mi>d</mi>
+                                                              <mi>e</mi>
+                                                              <mo>,</mo>
+                                                              <mtext>&#xA0;</mtext>
+                                                              <mi>J</mi>
+                                                              <mo>:</mo>
+                                                              <mi>J</mi>
+                                                                    <mi>o</mi>
+                                                              <mi>u</mi>
+                                                              <mi>l</mi>
+                                                              <mi>e</mi>
+                                                              <mspace linebreak="newline" />
+                                                            </math></div>
+                                                                </div>
+														</div>
+                                                   <form action="/Api/MHF4U/Earthquake/Energy" type="POST" id="energy">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                           <label>Earthquake Magnitude</label>
+                                                           <div class="input-group">
+                                                             <div class="input-group-prepend">
+                                                              <span class="input-group-text">
+                                                               <label class="radio radio-success">
+                                                                <input type="radio" name="ME" value="magnitude" checked="checked" v-model="ME" v-on:click="disabled=true"/>
+                                                                <span></span>
+                                                               </label>
+                                                              </span>
+                                                             </div>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude" v-model.number="magnitude" placeholder="Enter magnitude" :disabled="disabled==false" required/>
+                                                            </div></div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                           <label>Energy</label>
+                                                           <div class="input-group">
+                                                             <div class="input-group-prepend">
+                                                              <span class="input-group-text">
+                                                               <label class="radio radio-success">
+                                                                <input type="radio" name="ME" value="energy" v-model="ME" v-on:click="disabled=false"/>
+                                                                <span></span>
+                                                               </label>
+                                                              </span>
+                                                             </div>
+                                                            <input type="number" class="form-control" step="0.001" min="0" id="energy" v-model.number="energy"  :disabled="disabled==true" placeholder="Enter energy" required/>
+                                                               <div class="input-group-append" >
+                                                              <select class="form-control" title="unit" v-model="unit" :disabled="disabled==true" required>
+                                                                      <option>J</option>
+                                                                      <option>KJ</option>
+                                                                      <option>MJ</option>
+                                                                  <option>GJ</option>
+                                                                  <option>TJ</option>
+                                                                  <option>PJ</option>
+                                                                  <option>EJ</option>
+                                                            </select>
+                                                             </div>
+                                                            </div>
+                                                        </div>
+                                                       </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
+                                                       </div>
+                                                   </form>
+                                                   <div class="example mb-15 row justify-content-center">
+													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
+														<blockquote class="blockquote">
+															<p class="mb-0" id="ResultEnergy">Let's try some calculations!</p>
+														</blockquote>
+													</div>
+												    </div>
                                   </div>
                                  </div>
                                 </div>
 
+                                </div>
 							</div>
 							<!--end::Container-->
 						</div>
@@ -88,6 +230,7 @@
 
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{ url_for('static', filename='assets/js/pages/widgets.js') }}"></script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 		<!--end::Page Scripts-->
 
         <script>
@@ -95,9 +238,9 @@
             $('#intensity').on('submit',function(event){
                 $.ajax({
                     data:{
-                        magnitude1:app.$data.magnitude1,
-                        magnitude2:app.$data.magnitude2,
-                        decimal:app.$data.decimal
+                        magnitude1:intensity_Cal.$data.magnitude1,
+                        magnitude2:intensity_Cal.$data.magnitude2,
+                        decimal:intensity_Cal.$data.decimal
                     },
                     type:'POST',
                     url:'/Api/MHF4U/Earthquake/Intensity'
@@ -107,24 +250,72 @@
 
                 event.preventDefault();
             })
+
+        $('#energy').on('submit',function(event){
+                if(energy_Converter.$data.ME==="magnitude"){
+                    $.ajax({
+                    data:{
+                        ME:energy_Converter.$data.ME,
+                        magnitude:energy_Converter.$data.magnitude,
+                    },
+                    type:'POST',
+                    url:'/Api/MHF4U/Earthquake/Energy'
+                }).done(function (data){
+                    $('#ResultEnergy').text(data)
+                    });
+
+                event.preventDefault();
+                }else if(energy_Converter.$data.ME==='energy'){
+                    $.ajax({
+                    data:{
+                        ME:energy_Converter.$data.ME,
+                        energy:energy_Converter.$data.energy,
+                        unit:energy_Converter.$data.unit
+                    },
+                    type:'POST',
+                    url:'/Api/MHF4U/Earthquake/Energy'
+                }).done(function (data){
+                    $('#ResultEnergy').text(data)
+                    });
+
+                event.preventDefault();
+                }else{
+
+                }
+            })
         })
+
+
 
         function switchNum() {
             M1 = $('#magnitude1').val()
             M2 = $('#magnitude2').val()
                 $('#magnitude1').val(M2)
+                $('#magnitude1').val(M2)
                 $('#magnitude2').val(M1)
-                app.$set(app.$data,'magnitude1',M2)
-                app.$set(app.$data,'magnitude2',M1)
+                intensity_Cal.$set(intensity_Cal.$data,'magnitude1',M2)
+                intensity_Cal.$set(intensity_Cal.$data,'magnitude2',M1)
         }
 
-        var app = new Vue({
+        var intensity_Cal = new Vue({
             el:'#Intensity',
             delimiters:['{[', ']}'],
             data:{
                 magnitude1:'',
                 magnitude2:'',
-                decimal:0
+                decimal:0,
+            },
+        })
+
+        var energy_Converter = new Vue({
+            el:'#Energy',
+            delimiters:['{[', ']}'],
+            data:{
+                ME:'magnitude',
+                magnitude:'',
+                energy:'',
+                unit:'',
+                disabled:true
             }
         })
         </script>
