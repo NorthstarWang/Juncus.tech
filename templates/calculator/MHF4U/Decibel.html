@@ -17,8 +17,8 @@
                                      </a>
                                     </li>
                                        <li class="nav-item">
-                                     <a class="nav-link" data-toggle="tab" href="#Energy">
-                                     <span class="nav-text">Energy Converter</span>
+                                     <a class="nav-link" data-toggle="tab" href="#Intensity">
+                                     <span class="nav-text">Intensity Comparison</span>
                                      </a>
                                     </li>
                                    </ul>
@@ -59,13 +59,13 @@
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Decibel</label>
-                                                            <input type="number" class="form-control" step="0.01" min="0" id="decibel" v-model.number="decibel" placeholder="Enter decibel" required>
+                                                            <input type="number" class="form-control" step="0.1" min="0" id="decibel"  placeholder="Enter decibel" required>
                                                            </div>
                                                         </div>
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Decimal places</label>
-                                                            <input type="number" class="form-control" min="0" max="14" id="decimal" v-model.number="decimal" placeholder="Enter the result decimal places from 0 to 10" required>
+                                                            <input type="number" class="form-control" min="0" max="14" id="decimal1"  placeholder="Enter the result decimal places from 0 to 10" required>
                                                            </div>
                                                         </div>
                                                        <div class="form-group row justify-content-center">
@@ -81,7 +81,7 @@
 													</div>
 												    </div>
                                    </div>
-                                   <div class="tab-pane fade" id="Energy" role="tabpanel" aria-labelledby="Energy">
+                                   <div class="tab-pane fade" id="Intensity" role="tabpanel" aria-labelledby="Intensity">
                                     <div class="form-group mb-8">
 														<div class="alert alert-custom alert-default" role="alert">
 															<div class="alert-icon">
@@ -101,66 +101,39 @@
                                                             <math indentalign="center" xmlns="http://www.w3.org/1998/Math/MathML">
                                                               <mspace linebreak="newline" />
                                                               <mspace width="100px" />
-                                                              <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mrow> <mi> N </mi> </mrow> <mrow> <mi> db </mi> </mrow> </msub> <mo> = </mo> <msub> <mrow><mn> 10 </mn> <mi> log </mi> </mrow> <mrow> <mn> 10 </mn> </mrow> </msub> <mrow> <mo> ( </mo> <mfrac> <mrow>  <mi> P </mi>  </mrow> <mrow> <msup> <mrow> <mi> 10 </mi> </mrow> <mrow> <mi> -12 </mi> </mrow> </msup> </mrow> </mfrac> <mo> ) </mo> </mrow> </math>
-                                                              <mspace linebreak="newline" />
-                                                              <mspace width="100px" />
-                                                              <mrow> <mi> P </mi> </mrow><mo> = </mo><mi>Power</mi>
-                                                              <mspace linebreak="newline" />
+                                                              <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mrow> <mi> &#x03B2; <!-- greek small letter beta -->  </mi> </mrow> <mrow> <mi> 1 </mi> </mrow> </msub><mo> - </mo><msub> <mrow> <mi> &#x03B2; <!-- greek small letter beta -->  </mi> </mrow> <mrow> <mi> 2 </mi> </mrow> </msub> <mo> = </mo> <msub> <mrow><mn> 10 </mn> <mi> log </mi> </mrow> <mrow> <mn> 10 </mn> </mrow> </msub> <mrow> <mo> ( </mo> <mfrac> <mrow>  <msub> <mrow> <mi> I </mi> </mrow> <mrow> <mi> 1 </mi> </mrow> </msub>  </mrow> <mrow> <msub> <mrow> <mi> I </mi> </mrow> <mrow> <mi> 2 </mi> </mrow> </msub> </mrow> </mfrac> <mo> ) </mo> </mrow> </math>
                                                             </math></div>
 														</div>
 													</div>
-                                       <form action="/Api/MHF4U/Decibel/Energy" type="POST" id="energy">
+                                       <form action="/Api/MHF4U/Decibel/Intensity" type="POST" id="intensity">
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
-                                                           <label>Earthquake Magnitude</label>
-                                                           <div class="input-group">
-                                                             <div class="input-group-prepend">
-                                                              <span class="input-group-text">
-                                                               <label class="radio radio-success">
-                                                                <input type="radio" name="ME" value="magnitude" checked="checked" v-model="ME" v-on:click="disabled=true"/>
-                                                                <span></span>
-                                                               </label>
-                                                              </span>
-                                                             </div>
-                                                            <input type="number" class="form-control" step="0.1" min="0" max="10" id="magnitude" v-model.number="magnitude" placeholder="Enter magnitude" :disabled="disabled==false" required/>
-                                                            </div></div>
+                                                            <label>Decibel 1</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="200" id="decibel1"  placeholder="Enter decibel" required>
+                                                           </div>
                                                         </div>
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
-                                                           <label>Energy</label>
-                                                           <div class="input-group">
-                                                             <div class="input-group-prepend">
-                                                              <span class="input-group-text">
-                                                               <label class="radio radio-success">
-                                                                <input type="radio" name="ME" value="energy" v-model="ME" v-on:click="disabled=false"/>
-                                                                <span></span>
-                                                               </label>
-                                                              </span>
-                                                             </div>
-                                                            <input type="number" class="form-control" step="0.001" min="0" id="energy" v-model.number="energy"  :disabled="disabled==true" placeholder="Enter energy" required/>
-                                                               <div class="input-group-append" >
-                                                              <select class="form-control" title="unit" v-model="unit" :disabled="disabled==true" required>
-                                                                      <option>J</option>
-                                                                      <option>KJ</option>
-                                                                      <option>MJ</option>
-                                                                  <option>GJ</option>
-                                                                  <option>TJ</option>
-                                                                  <option>PJ</option>
-                                                                  <option>EJ</option>
-                                                            </select>
-                                                             </div>
-                                                            </div>
+                                                            <label>Decibel 2</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="200" id="decibel2"  placeholder="Enter decibel" required>
+                                                           </div>
                                                         </div>
-                                                       </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decimal places</label>
+                                                            <input type="number" class="form-control" min="0" max="10" id="decimal2"  placeholder="Enter the result decimal places from 0 to 10" required>
+                                                           </div>
+                                                        </div>
                                                        <div class="form-group row justify-content-center">
                                                            <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="button" onclick="switchNum()" class="btn btn-secondary mr-2">Switch</button>
                                                            <button type="reset" class="btn btn-danger mr-2">Clear</button>
                                                        </div>
                                                    </form>
                                                    <div class="example mb-15 row justify-content-center">
 													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
 														<blockquote class="blockquote">
-															<p class="mb-0" id="ResultEnergy">Let's try some calculations!</p>
+															<p class="mb-0" id="ResultIntensity">Let's try some calculations!</p>
 														</blockquote>
 													</div>
 												    </div>
@@ -195,8 +168,8 @@
         $('#energyFlux').on('submit', function (event) {
             $.ajax({
                 data: {
-                    decibel: EF.$data.decibel,
-                    decimal: EF.$data.decimal
+                    decibel: $('#decibel').val(),
+                    decimal1: $('#decimal1').val()
                 },
                 type: 'POST',
                 url: '/Api/MHF4U/Decibel/EnergyFlux'
@@ -206,15 +179,29 @@
 
             event.preventDefault();
         })
+
+        $('#intensity').on('submit', function (event) {
+            $.ajax({
+                data: {
+                    decibel1: $('#decibel1').val(),
+                    decibel2: $('#decibel2').val(),
+                    decimal2: $('#decimal2').val()
+                },
+                type: 'POST',
+                url: '/Api/MHF4U/Decibel/Intensity'
+            }).done(function (data) {
+                $('#ResultIntensity').text(data)
+            });
+
+            event.preventDefault();
+        })
     })
 
-    var EF = new Vue({
-            el:'#EnergyFlux',
-            delimiters:['{[', ']}'],
-            data:{
-                decibel:0,
-                decimal:0,
-            },
-        })
+    function switchNum() {
+        let D1 = $('#decibel1').val();
+        let D2 = $('#decibel2').val()
+                $('#decibel1').val(D2)
+                $('#decibel2').val(D1)
+        }
     </script>
 {% endblock %}

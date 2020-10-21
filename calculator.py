@@ -1,13 +1,12 @@
 import math
-import pdb
 from flask import Flask, render_template, request
 
 from app import app
 
 
-@app.route('/Calculator/<string:subject>/<string:file>')
-def calculator(subject, file):
-    path = "calculator/" + subject + "/" + file
+@app.route('/Calculator/<string:subject>/<string:filename>')
+def calculator(subject, filename):
+    path = "calculator/" + subject + "/" + filename
     return render_template(path)
 
 
@@ -79,9 +78,9 @@ def earthquake_energy_calculation():
 
 
 @app.route('/Api/MHF4U/Decibel/EnergyFlux', methods=['POST'])
-def decibel_intensity_calculation():
+def decibel_energy_flux_calculation():
     decibel = float(request.form['decibel'])
-    decimal = int(request.form['decimal'])
+    decimal = int(request.form['decimal1'])
     result_round = float(pow(10, decibel / 10) * pow(10, -12))
     result = round(result_round, decimal)
     first = 'The intensity level '
@@ -93,4 +92,12 @@ def decibel_intensity_calculation():
         text = first + str(decibel) + ' have an intensity of ' + str(result) + last
         return text
 
+
+@app.route('/Api/MHF4U/Decibel/Intensity', methods=['POST'])
+def decibel_intensity_calculation():
+    D1 = float(request.form['decibel1'])
+    D2 = float(request.form['decibel2'])
+    decimal = int(request.form['decimal2'])
+    result = round(pow(10, (D1-D2)/10), decimal)
+    return 'Decibel 1 has an intensity ' + str(result) + ' times as great as Decibel 2'
 

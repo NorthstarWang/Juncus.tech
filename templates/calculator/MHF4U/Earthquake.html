@@ -238,9 +238,9 @@
             $('#intensity').on('submit',function(event){
                 $.ajax({
                     data:{
-                        magnitude1:intensity_Cal.$data.magnitude1,
-                        magnitude2:intensity_Cal.$data.magnitude2,
-                        decimal:intensity_Cal.$data.decimal
+                        magnitude1:$('#magnitude1').val(),
+                        magnitude2:$('#magnitude2').val(),
+                        decimal:$('#decimal').val()
                     },
                     type:'POST',
                     url:'/Api/MHF4U/Earthquake/Intensity'
@@ -291,21 +291,8 @@
             M1 = $('#magnitude1').val()
             M2 = $('#magnitude2').val()
                 $('#magnitude1').val(M2)
-                $('#magnitude1').val(M2)
                 $('#magnitude2').val(M1)
-                intensity_Cal.$set(intensity_Cal.$data,'magnitude1',M2)
-                intensity_Cal.$set(intensity_Cal.$data,'magnitude2',M1)
         }
-
-        var intensity_Cal = new Vue({
-            el:'#Intensity',
-            delimiters:['{[', ']}'],
-            data:{
-                magnitude1:'',
-                magnitude2:'',
-                decimal:0,
-            },
-        })
 
         var energy_Converter = new Vue({
             el:'#Energy',
