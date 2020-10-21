@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
+
+							<!--begin::Container-->
+							<div class="container-fluid">
+
+								<div class="card card-custom">
+                                 <div class="card-header card-header-tabs-line">
+                                  <div class="card-toolbar">
+                                   <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                    <li class="nav-item">
+                                     <a class="nav-link active" data-toggle="tab" href="#EnergyFlux">
+                                     <span class="nav-text">Transformation</span>
+                                     </a>
+                                    </li>
+                                       <li class="nav-item">
+                                     <a class="nav-link" data-toggle="tab" href="#Intensity">
+                                     <span class="nav-text">Slopes</span>
+                                     </a>
+                                    </li>
+                                   </ul>
+                                  </div>
+                                 </div>
+                                 <div class="card-body">
+                                  <div class="tab-content">
+                                   <div class="tab-pane fade show active" id="EnergyFlux" role="tabpanel" aria-labelledby="EnergyFlux">
+
+                                    <div class="form-group mb-8">
+														<div class="alert alert-custom alert-default" role="alert">
+															<div class="alert-icon">
+																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																			<rect x="0" y="0" width="24" height="24"></rect>
+																			<path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3"></path>
+																			<path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero"></path>
+																		</g>
+																	</svg>
+																	<!--end::Svg Icon-->
+																</span>
+															</div>
+															<div class="alert-text" style="overflow-x: scroll;">For example, </div>
+														</div>
+													</div>
+                                       <form action="/Api/MHF4U/Decibel/EnergyFlux" type="POST" id="energyFlux">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decibel</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" id="decibel"  placeholder="Enter decibel" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decimal places</label>
+                                                            <input type="number" class="form-control" min="0" max="14" id="decimal1"  placeholder="Enter the result decimal places from 0 to 10" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
+                                                       </div>
+                                                   </form>
+                                                   <div class="example mb-15 row justify-content-center">
+													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
+														<blockquote class="blockquote">
+															<p class="mb-0" id="ResultEnergyFlux">Let's try some calculations!</p>
+														</blockquote>
+													</div>
+												    </div>
+                                   </div>
+                                   <div class="tab-pane fade" id="Intensity" role="tabpanel" aria-labelledby="Intensity">
+                                    <div class="form-group mb-8">
+														<div class="alert alert-custom alert-default" role="alert">
+															<div class="alert-icon">
+																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																			<rect x="0" y="0" width="24" height="24"></rect>
+																			<path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3"></path>
+																			<path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero"></path>
+																		</g>
+																	</svg>
+																	<!--end::Svg Icon-->
+																</span>
+															</div>
+															<div class="alert-text" style="overflow-x: scroll;">
+                                                            <math indentalign="center" xmlns="http://www.w3.org/1998/Math/MathML">
+                                                              <mspace linebreak="newline" />
+                                                              <mspace width="100px" />
+                                                              <math xmlns='http://www.w3.org/1998/Math/MathML'> <msub> <mrow> <mi> &#x03B2; <!-- greek small letter beta -->  </mi> </mrow> <mrow> <mi> 1 </mi> </mrow> </msub><mo> - </mo><msub> <mrow> <mi> &#x03B2; <!-- greek small letter beta -->  </mi> </mrow> <mrow> <mi> 2 </mi> </mrow> </msub> <mo> = </mo> <msub> <mrow><mn> 10 </mn> <mi> log </mi> </mrow> <mrow> <mn> 10 </mn> </mrow> </msub> <mrow> <mo> ( </mo> <mfrac> <mrow>  <msub> <mrow> <mi> I </mi> </mrow> <mrow> <mi> 1 </mi> </mrow> </msub>  </mrow> <mrow> <msub> <mrow> <mi> I </mi> </mrow> <mrow> <mi> 2 </mi> </mrow> </msub> </mrow> </mfrac> <mo> ) </mo> </mrow> </math>
+                                                            </math></div>
+														</div>
+													</div>
+                                       <form action="/Api/MHF4U/Decibel/Intensity" type="POST" id="intensity">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decibel 1</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="200" id="decibel1"  placeholder="Enter decibel" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decibel 2</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" max="200" id="decibel2"  placeholder="Enter decibel" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decimal places</label>
+                                                            <input type="number" class="form-control" min="0" max="10" id="decimal2"  placeholder="Enter the result decimal places from 0 to 10" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="button" onclick="switchNum()" class="btn btn-secondary mr-2">Switch</button>
+                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
+                                                       </div>
+                                                   </form>
+                                                   <div class="example mb-15 row justify-content-center">
+													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
+														<blockquote class="blockquote">
+															<p class="mb-0" id="ResultIntensity">Let's try some calculations!</p>
+														</blockquote>
+													</div>
+												    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+
+							</div>
+
+							<!--end::Container-->
+						</div>
+
+						<!--end::Entry-->
+{% endblock %}
+{% block script %}
+
+    <!--begin::Global Theme Bundle(used by all pages)-->
+		<script src="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/scripts.bundle.js') }}"></script>
+
+		<!--end::Global Theme Bundle-->
+
+		<!--begin::Page Scripts(used by this page)-->
+		<script src="{{ url_for('static', filename='assets/js/pages/widgets.js') }}"></script>
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+		<!--end::Page Scripts-->
+    <script>
+    $(document).ready(function () {
+        $('#energyFlux').on('submit', function (event) {
+            $.ajax({
+                data: {
+                    decibel: $('#decibel').val(),
+                    decimal1: $('#decimal1').val()
+                },
+                type: 'POST',
+                url: '/Api/MHF4U/Decibel/EnergyFlux'
+            }).done(function (data) {
+                $('#ResultEnergyFlux').text(data)
+            });
+
+            event.preventDefault();
+        })
+
+        $('#intensity').on('submit', function (event) {
+            $.ajax({
+                data: {
+                    decibel1: $('#decibel1').val(),
+                    decibel2: $('#decibel2').val(),
+                    decimal2: $('#decimal2').val()
+                },
+                type: 'POST',
+                url: '/Api/MHF4U/Decibel/Intensity'
+            }).done(function (data) {
+                $('#ResultIntensity').text(data)
+            });
+
+            event.preventDefault();
+        })
+    })
+
+    function switchNum() {
+        let D1 = $('#decibel1').val();
+        let D2 = $('#decibel2').val()
+                $('#decibel1').val(D2)
+                $('#decibel2').val(D1)
+        }
+    </script>
+{% endblock %}

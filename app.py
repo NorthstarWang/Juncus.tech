@@ -1,8 +1,8 @@
 from flask import Flask, render_template
+import BLL
 
 app = Flask(__name__)
 
-import calculator
 
 @app.route('/')
 def index():

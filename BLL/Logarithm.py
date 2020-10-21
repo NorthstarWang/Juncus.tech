@@ -1,13 +1,8 @@
 import math
-from flask import Flask, render_template, request
+
+from flask import request
 
 from app import app
-
-
-@app.route('/Calculator/<string:subject>/<string:filename>')
-def calculator(subject, filename):
-    path = "calculator/" + subject + "/" + filename
-    return render_template(path)
 
 
 @app.route('/Api/MHF4U/Earthquake/Intensity', methods=['POST'])
