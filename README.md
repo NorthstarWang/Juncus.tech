@@ -1,6 +1,6 @@
 ## Juncus.tech
 This project is a sample project established on Python+Flask, with calculator function mainly focused on solving Canadian high-school level math problems.
-> **The web app has been deployed on heroku: https://juncus-tech.herokuapp.com/**
+> **The web app has been deployed on heroku: https://juncus-tech.herokuapp.com/ and www.juncus.tech**
 
 ### Keen Themes
 
