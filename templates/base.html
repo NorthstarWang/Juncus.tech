@@ -14,148 +14,151 @@ License: You must have a valid license purchased only from themes.getbootstrap.c
 -->
 <html lang="en">
 
-	<!--begin::Head-->
-	<head>
-		<meta charset="utf-8" />
-		<title>Main</title>
-		<meta name="description" content="Updates and statistics" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!--begin::Head-->
+<head>
+    <meta charset="utf-8"/>
+    <title>Main</title>
+    <meta name="description" content="Updates and statistics"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
 
-		<!--end::Fonts-->
+    <!--end::Fonts-->
 
-		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ url_for('static', filename='assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-        <script src="{{ url_for('static', filename='assets/js/vue.js') }}"></script>
-		<!--end::Global Theme Styles-->
+    <!--begin::Global Theme Styles(used by all pages)-->
+    <link href="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ url_for('static', filename='assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static', filename='assets/js/vue.js') }}"></script>
+    <!--end::Global Theme Styles-->
 
-		<!--begin::Layout Themes(used by all pages)-->
+    <!--begin::Layout Themes(used by all pages)-->
 
-		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="{{ url_for('static', filename='assets/media/logos/Juncus_title.png') }}" />
-	</head>
+    <!--end::Layout Themes-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/media/logos/Juncus_title.png') }}"/>
+</head>
 
-	<!--end::Head-->
+<!--end::Head-->
 
-	<!--begin::Body-->
-	<body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
+<!--begin::Body-->
+<body id="kt_body"
+      class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
 
-        {% include 'partials/_page-loader.html'%}
+{% include 'partials/_page-loader.html' %}
 
 
-        <!--begin::Main-->
+<!--begin::Main-->
 
-        {% include 'partials/_header-mobile.html' %}
+{% include 'partials/_header-mobile.html' %}
 
-        {% include 'partials/_aside.html' %}
-		<div class="d-flex flex-column flex-root">
+{% include 'partials/_aside.html' %}
+<div class="d-flex flex-column flex-root">
 
-			<!--begin::Page-->
-			<div class="d-flex flex-row flex-column-fluid page">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
 
-				<!--begin::Wrapper-->
-				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 
-                    {% include 'partials/_header.html' %}
+            {% include 'partials/_header.html' %}
 
-                    {% include 'partials/_subheader.html' %}
+            {% include 'partials/_subheader.html' %}
 
-					<!--begin::Content-->
-					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
-                            {% block content %}
-                            {% endblock %}
-                    </div>
+                {% block content %}
+                {% endblock %}
+            </div>
 
-					<!--end::Content-->
+            <!--end::Content-->
 
-                    {% include 'partials/_footer.html' %}
-				</div>
+            {% include 'partials/_footer.html' %}
+        </div>
 
-				<!--end::Wrapper-->
-			</div>
+        <!--end::Wrapper-->
+    </div>
 
-			<!--end::Page-->
-		</div>
+    <!--end::Page-->
+</div>
 
-		<!--end::Main-->
+<!--end::Main-->
 
-        {% include 'partials/_extras/scrolltop.html' %}
+{% include 'partials/_extras/scrolltop.html' %}
 
-		<script>
-			var HOST_URL = "https://preview.keenthemes.com/keen/theme/tools/preview";
-		</script>
+<script>
+    var HOST_URL = "https://preview.keenthemes.com/keen/theme/tools/preview";
+</script>
 
-		<!--begin::Global Config(global config for global JS scripts)-->
-		<script>
-			var KTAppSettings = {
-				"breakpoints": {
-					"sm": 576,
-					"md": 768,
-					"lg": 992,
-					"xl": 1200,
-					"xxl": 1200
-				},
-				"colors": {
-					"theme": {
-						"base": {
-							"white": "#ffffff",
-							"primary": "#0BB783",
-							"secondary": "#E5EAEE",
-							"success": "#1BC5BD",
-							"info": "#8950FC",
-							"warning": "#FFA800",
-							"danger": "#F64E60",
-							"light": "#F3F6F9",
-							"dark": "#212121"
-						},
-						"light": {
-							"white": "#ffffff",
-							"primary": "#D7F9EF",
-							"secondary": "#ECF0F3",
-							"success": "#C9F7F5",
-							"info": "#EEE5FF",
-							"warning": "#FFF4DE",
-							"danger": "#FFE2E5",
-							"light": "#F3F6F9",
-							"dark": "#D6D6E0"
-						},
-						"inverse": {
-							"white": "#ffffff",
-							"primary": "#ffffff",
-							"secondary": "#212121",
-							"success": "#ffffff",
-							"info": "#ffffff",
-							"warning": "#ffffff",
-							"danger": "#ffffff",
-							"light": "#464E5F",
-							"dark": "#ffffff"
-						}
-					},
-					"gray": {
-						"gray-100": "#F3F6F9",
-						"gray-200": "#ECF0F3",
-						"gray-300": "#E5EAEE",
-						"gray-400": "#D6D6E0",
-						"gray-500": "#B5B5C3",
-						"gray-600": "#80808F",
-						"gray-700": "#464E5F",
-						"gray-800": "#1B283F",
-						"gray-900": "#212121"
-					}
-				},
-				"font-family": "Poppins"
-			};
-		</script>
+<!--begin::Global Config(global config for global JS scripts)-->
+<script>
+    var KTAppSettings = {
+        "breakpoints": {
+            "sm": 576,
+            "md": 768,
+            "lg": 992,
+            "xl": 1200,
+            "xxl": 1200
+        },
+        "colors": {
+            "theme": {
+                "base": {
+                    "white": "#ffffff",
+                    "primary": "#0BB783",
+                    "secondary": "#E5EAEE",
+                    "success": "#1BC5BD",
+                    "info": "#8950FC",
+                    "warning": "#FFA800",
+                    "danger": "#F64E60",
+                    "light": "#F3F6F9",
+                    "dark": "#212121"
+                },
+                "light": {
+                    "white": "#ffffff",
+                    "primary": "#D7F9EF",
+                    "secondary": "#ECF0F3",
+                    "success": "#C9F7F5",
+                    "info": "#EEE5FF",
+                    "warning": "#FFF4DE",
+                    "danger": "#FFE2E5",
+                    "light": "#F3F6F9",
+                    "dark": "#D6D6E0"
+                },
+                "inverse": {
+                    "white": "#ffffff",
+                    "primary": "#ffffff",
+                    "secondary": "#212121",
+                    "success": "#ffffff",
+                    "info": "#ffffff",
+                    "warning": "#ffffff",
+                    "danger": "#ffffff",
+                    "light": "#464E5F",
+                    "dark": "#ffffff"
+                }
+            },
+            "gray": {
+                "gray-100": "#F3F6F9",
+                "gray-200": "#ECF0F3",
+                "gray-300": "#E5EAEE",
+                "gray-400": "#D6D6E0",
+                "gray-500": "#B5B5C3",
+                "gray-600": "#80808F",
+                "gray-700": "#464E5F",
+                "gray-800": "#1B283F",
+                "gray-900": "#212121"
+            }
+        },
+        "font-family": "Poppins"
+    };
+</script>
 
-		<!--end::Global Config-->
-        {% block script %}
-        {% endblock %}
-	</body>
+<!--end::Global Config-->
+{% block script %}
+{% endblock %}
+</body>
 
-	<!--end::Body-->
+<!--end::Body-->
 </html>

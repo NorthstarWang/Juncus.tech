@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
+
+							<!--begin::Container-->
+							<div class="container-fluid">
+
+								<div class="card card-custom">
+                                 <div class="card-header card-header-tabs-line">
+                                  <div class="card-toolbar">
+                                   <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                    <li class="nav-item">
+                                     <a class="nav-link active" data-toggle="tab" href="#EnergyFlux">
+                                     <span class="nav-text">Submission setting</span>
+                                     </a>
+                                    </li>
+                                   </ul>
+                                  </div>
+                                 </div>
+                                 <div class="card-body">
+                                  <div class="tab-content">
+                                   <div class="tab-pane fade show active" id="EnergyFlux" role="tabpanel" aria-labelledby="submission">
+                                       <form action="/Api/tool/Form/Get" type="POST" id="submission">
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decibel</label>
+                                                            <input type="number" class="form-control" step="0.1" min="0" id="decibel"  placeholder="Enter decibel" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                                                            <label>Decimal places</label>
+                                                            <input type="number" class="form-control" min="0" max="14" id="decimal1"  placeholder="Enter the result decimal places from 0 to 10" required>
+                                                           </div>
+                                                        </div>
+                                                       <div class="form-group row justify-content-center">
+                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
+                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
+                                                       </div>
+                                                   </form>
+                                                   <div class="example mb-15 row justify-content-center">
+													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
+														<blockquote class="blockquote">
+															<p class="mb-0" id="ResultEnergyFlux">Let's try some calculations!</p>
+														</blockquote>
+													</div>
+												    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+
+							</div>
+
+							<!--end::Container-->
+						</div>
+
+						<!--end::Entry-->
+{% endblock %}
+{% block script %}
+
+    <!--begin::Global Theme Bundle(used by all pages)-->
+		<script src="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/scripts.bundle.js') }}"></script>
+
+		<!--end::Global Theme Bundle-->
+
+		<!--begin::Page Scripts(used by this page)-->
+		<script src="{{ url_for('static', filename='assets/js/pages/widgets.js') }}"></script>
+{% endblock %}
