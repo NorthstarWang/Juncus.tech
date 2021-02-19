@@ -1,7 +1,5 @@
 from flask import render_template
-
-import Logarithm
-import Tool
+import BLL.Logarithm, BLL.Tool
 from app import *
 
 
