@@ -1,17 +1,11 @@
 import math
 
-from flask import request, render_template
+from flask import request
 
 from app import app
 
 
-@app.route('/Calculator/<string:subject>/<string:filename>')
-def calculator(subject, filename):
-    path = "calculator/" + subject + "/" + filename
-    return render_template(path)
-
-
-@app.route('/Api/MHF4U/Earthquake/Intensity', methods=['POST'])
+@app.route('/Api/Earthquake/Intensity', methods=['POST'])
 def earthquake_intensity_calculation():
     M1 = float(request.form['magnitude1'])
     M2 = float(request.form['magnitude2'])
@@ -24,7 +18,7 @@ def earthquake_intensity_calculation():
         return str('Please type in correct value range from 0 to 10!')
 
 
-@app.route('/Api/MHF4U/Earthquake/Energy', methods=['POST'])
+@app.route('/Api/Earthquake/Energy', methods=['POST'])
 def earthquake_energy_calculation():
     ME = str(request.form['ME'])
     if ME == 'energy':
@@ -78,7 +72,7 @@ def earthquake_energy_calculation():
         return "The magnitude will produce " + '{:.6e}'.format(E) + " Joules of energy."
 
 
-@app.route('/Api/MHF4U/Decibel/EnergyFlux', methods=['POST'])
+@app.route('/Api/Decibel/EnergyFlux', methods=['POST'])
 def decibel_energy_flux_calculation():
     decibel = float(request.form['decibel'])
     decimal = int(request.form['decimal1'])
@@ -94,7 +88,7 @@ def decibel_energy_flux_calculation():
         return text
 
 
-@app.route('/Api/MHF4U/Decibel/Intensity', methods=['POST'])
+@app.route('/Api/Decibel/Intensity', methods=['POST'])
 def decibel_intensity_calculation():
     D1 = float(request.form['decibel1'])
     D2 = float(request.form['decibel2'])

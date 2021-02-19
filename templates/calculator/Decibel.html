@@ -55,7 +55,7 @@
                                                             </math></div>
 														</div>
 													</div>
-                                       <form action="/Api/MHF4U/Decibel/EnergyFlux" type="POST" id="energyFlux">
+                                       <form action="/Api/Decibel/EnergyFlux" type="POST" id="energyFlux">
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Decibel</label>
@@ -105,7 +105,7 @@
                                                             </math></div>
 														</div>
 													</div>
-                                       <form action="/Api/MHF4U/Decibel/Intensity" type="POST" id="intensity">
+                                       <form action="/Api/Decibel/Intensity" type="POST" id="intensity">
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Decibel 1</label>
@@ -172,7 +172,7 @@
                     decimal1: $('#decimal1').val()
                 },
                 type: 'POST',
-                url: '/Api/MHF4U/Decibel/EnergyFlux'
+                url: '/Api/Decibel/EnergyFlux'
             }).done(function (data) {
                 $('#ResultEnergyFlux').text(data)
             });
@@ -188,7 +188,7 @@
                     decimal2: $('#decimal2').val()
                 },
                 type: 'POST',
-                url: '/Api/MHF4U/Decibel/Intensity'
+                url: '/Api/Decibel/Intensity'
             }).done(function (data) {
                 $('#ResultIntensity').text(data)
             });

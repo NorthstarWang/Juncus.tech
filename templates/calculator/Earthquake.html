@@ -61,7 +61,7 @@
                                                             </math></div>
 														</div>
 													</div>
-                                                   <form action="/Api/MHF4U/Earthquake/Intensity" type="POST" id="intensity">
+                                                   <form action="/Api/Earthquake/Intensity" type="POST" id="intensity">
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                             <label>Earthquake 1</label>
@@ -153,7 +153,7 @@
                                                             </math></div>
                                                                 </div>
 														</div>
-                                                   <form action="/Api/MHF4U/Earthquake/Energy" type="POST" id="energy">
+                                                   <form action="/Api/Earthquake/Energy" type="POST" id="energy">
                                                        <div class="form-group row justify-content-center">
                                                            <div class="col-xl-6 col-lg-6 col-md-8 col-10">
                                                            <label>Earthquake Magnitude</label>
@@ -243,7 +243,7 @@
                         decimal:$('#decimal').val()
                     },
                     type:'POST',
-                    url:'/Api/MHF4U/Earthquake/Intensity'
+                    url:'/Api/Earthquake/Intensity'
                 }).done(function (data){
                     $('#ResultIntensity').text(data)
                     });
@@ -259,7 +259,7 @@
                         magnitude:energy_Converter.$data.magnitude,
                     },
                     type:'POST',
-                    url:'/Api/MHF4U/Earthquake/Energy'
+                    url:'/Api/Earthquake/Energy'
                 }).done(function (data){
                     $('#ResultEnergy').text(data)
                     });
@@ -273,7 +273,7 @@
                         unit:energy_Converter.$data.unit
                     },
                     type:'POST',
-                    url:'/Api/MHF4U/Earthquake/Energy'
+                    url:'/Api/Earthquake/Energy'
                 }).done(function (data){
                     $('#ResultEnergy').text(data)
                     });

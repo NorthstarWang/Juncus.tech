@@ -1,7 +1,7 @@
 from flask import Flask, render_template
-import BLL
 
 app = Flask(__name__)
+import BLL
 
 
 @app.route('/')
@@ -16,4 +16,4 @@ def not_found(e):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
