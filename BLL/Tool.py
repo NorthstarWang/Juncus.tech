@@ -31,7 +31,8 @@ def generate_form_info_viewform(string, types, entry):
         "entry": entry,
         "title": info_array[1],
         "options": sorted_options,
-        "number": initial_option_num
+        "number": initial_option_num,
+        "status": 0,
     }
     return form_section
 
@@ -49,11 +50,11 @@ def get_form():
     headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0',
                'Accept - Language': 'zh - CN, zh;q = 0.8, en - US;q = 0.5, en;q = 0.3',
                }
-    response = requests.get(url).text
-    soup = BeautifulSoup(response, 'html5lib')
-    total_list = []
-    status = True
-    if url[-8:] == "viewform":
+    if url[-8:] == "viewform" and url.find('docs.google.com/forms/d/') != -1:
+        response = requests.get(url, headers=headers).text
+        soup = BeautifulSoup(response, 'html5lib')
+        total_list = []
+        status = True
         for segment in soup.find_all("div", "freebirdFormviewerViewNumberedItemContainer"):
             try:
                 info_list = segment.find(attrs={"class": "m2"})['data-params']

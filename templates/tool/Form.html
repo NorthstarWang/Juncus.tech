@@ -65,7 +65,7 @@
 																	<!--begin::Input-->
 																	<div class="form-group">
 																		<label>Number of submission</label>
-                                                                            <input type="text" class="form-control form-control-solid form-control-lg" name="No_sub" placeholder="Number of submission" />
+                                                                            <input type="text" class="form-control form-control-solid form-control-lg" v-model="num" name="No_sub" placeholder="Number of submission" />
                                                                         <span class="form-text text-muted">Please enter your expected submission(Max. 100).</span>
 																	</div>
 																	<!--end::Input-->
@@ -73,28 +73,30 @@
 																<!--end: Wizard Step 1-->
 																<!--begin: Wizard Step 2-->
 																<div class="pb-5" data-wizard-type="step-content">
-																	<div class="mb-10 font-weight-bold text-dark">Setup Your Percentage of options on each question</div>
+																	<div class="mb-auto font-weight-bold text-dark">Setup Your Percentage of options on each question</div>
 																	<div class="row">
-																		<div class="col-xl-6">
+																		<div class="col-auto">
 																			<!--begin::Input-->
                                                                             <div class="mb-auto" v-for="(question, index) in questions">
                                                                                 <div class="form-group">
-                                                                                <span class="label label-warning label-pill label-inline mr-2">Pending</span>
+                                                                                <div class="form-state">
+                                                                                <span class="label label-warning label-pill label-inline mr-2">[{!question.status?"Incomplete":((question.type)==="radio")?"Completed":"Fulfilled"}]</span><span class="label label-info label-inline mr-2">[{question.type}]</span>
                                                                                 </div>
-                                                                                <div class="form-group">
+                                                                                <div class="form-group row">
                                                                                     <h4>[{ question.title }]</h4>
                                                                                 </div>
                                                                                 <div class="col-auto">
                                                                                     <div class="form-group row" v-for="(opt, inner) in question.options">
                                                                                             <div class="input-group input-group-sm">
-                                                                                                <div class="input-group-text col-10">[{opt}]</div>
-                                                                                                <div class="col-2 align-right">
-                                                                                                    <input type="number" min="0" class="form-control" v-model="question.number[inner]"/>
+                                                                                                <div class="input-group-text col-9">[{opt}]</div>
+                                                                                                <div class="col-3 align-right">
+                                                                                                    <input type="number" min="0" v-bind:max="num" class="form-control" v-model="question.number[inner]"/>
                                                                                                 </div>
                                                                                             </div>
                                                                                     </div>
                                                                                 </div>
                                                                                         <div class="separator separator-solid"></div>
+                                                                                </div>
                                                                             </div>
 																			<!--end::Input-->
 																		</div>
@@ -213,6 +215,7 @@
         data:{
             status:'Click submit to start the submission.',
             questions:'',
+            num: 1,
         },
         watch:{
             status: function (){
