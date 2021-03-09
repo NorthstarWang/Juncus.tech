@@ -1,56 +1,183 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<link href="{{ url_for('static', filename='assets/css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css" />
 <!--begin::Entry-->
 						<div class="d-flex flex-column-fluid">
 
 							<!--begin::Container-->
 							<div class="container-fluid">
 
-								<div class="card card-custom">
-                                 <div class="card-header card-header-tabs-line">
-                                  <div class="card-toolbar">
-                                   <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                                    <li class="nav-item">
-                                     <a class="nav-link active" data-toggle="tab" href="#EnergyFlux">
-                                     <span class="nav-text">Submission setting</span>
-                                     </a>
-                                    </li>
-                                   </ul>
-                                  </div>
-                                 </div>
-                                 <div class="card-body">
-                                  <div class="tab-content">
-                                   <div class="tab-pane fade show active" id="EnergyFlux" role="tabpanel" aria-labelledby="submission">
-                                       <form action="/Api/tool/Form/Get" type="POST" id="submission">
-                                                       <div class="form-group row justify-content-center">
-                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
-                                                            <label>Decibel</label>
-                                                            <input type="number" class="form-control" step="0.1" min="0" id="decibel"  placeholder="Enter decibel" required>
-                                                           </div>
-                                                        </div>
-                                                       <div class="form-group row justify-content-center">
-                                                           <div class="col-xl-6 col-lg-6 col-md-8 col-10">
-                                                            <label>Decimal places</label>
-                                                            <input type="number" class="form-control" min="0" max="14" id="decimal1"  placeholder="Enter the result decimal places from 0 to 10" required>
-                                                           </div>
-                                                        </div>
-                                                       <div class="form-group row justify-content-center">
-                                                           <button type="submit" class="btn btn-primary mr-2">Calculate</button>
-                                                           <button type="reset" class="btn btn-danger mr-2">Clear</button>
-                                                       </div>
-                                                   </form>
-                                                   <div class="example mb-15 row justify-content-center">
-													<div class="example-preview text-center col-xl-6 col-lg-6 col-md-8 col-10">
-														<blockquote class="blockquote">
-															<p class="mb-0" id="ResultEnergyFlux">Let's try some calculations!</p>
-														</blockquote>
+                                <div class="card card-custom card-transparent">
+									<div class="card-body p-0">
+										<!--begin: Wizard-->
+										<div class="wizard wizard-4" id="kt_wizard" data-wizard-state="step-first" data-wizard-clickable="false">
+											<!--begin::Wizard Nav-->
+											<div class="wizard-nav">
+												<div class="wizard-steps">
+													<div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+														<div class="wizard-wrapper">
+															<div class="wizard-label">
+																<div class="wizard-title">Preset</div>
+															</div>
+														</div>
 													</div>
-												    </div>
-                                   </div>
-                                  </div>
-                                 </div>
-                                </div>
+													<div class="wizard-step" data-wizard-type="step">
+														<div class="wizard-wrapper">
+															<div class="wizard-label">
+																<div class="wizard-title">Edit submission</div>
+															</div>
+														</div>
+													</div>
+													<div class="wizard-step" data-wizard-type="step">
+														<div class="wizard-wrapper">
+															<div class="wizard-label">
+																<div class="wizard-title">Preview</div>
+															</div>
+														</div>
+													</div>
+													<div class="wizard-step" data-wizard-type="step">
+														<div class="wizard-wrapper">
+															<div class="wizard-label">
+																<div class="wizard-title">Done</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--end::Wizard Nav-->
+											<!--begin: Wizard Body-->
+											<div class="card card-custom card-shadowless rounded-top-0">
+												<div class="card-body p-0">
+													<div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+														<div class="col-xl-12 col-xxl-7">
+															<!--begin: Wizard Form-->
+															<form class="form mt-0 mt-lg-10" id="kt_form">
+																<!--begin: Wizard Step 1-->
+																<div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+																	<div class="mb-10 font-weight-bold text-dark">Enter your Url & Number of submission you expect(Maximum 100)</div>
+																	<!--begin::Input-->
+																	<div class="form-group">
+																		<label>Url</label>
+																		<input type="text" class="form-control form-control-solid form-control-lg" id="form_url" name="url" placeholder="Google form url" />
+																		<span class="form-text text-muted">Please enter your url.</span>
+																	</div>
+																	<!--end::Input-->
+																	<!--begin::Input-->
+																	<div class="form-group">
+																		<label>Number of submission</label>
+                                                                            <input type="text" class="form-control form-control-solid form-control-lg" name="No_sub" placeholder="Number of submission" />
+                                                                        <span class="form-text text-muted">Please enter your expected submission(Max. 100).</span>
+																	</div>
+																	<!--end::Input-->
+																</div>
+																<!--end: Wizard Step 1-->
+																<!--begin: Wizard Step 2-->
+																<div class="pb-5" data-wizard-type="step-content">
+																	<div class="mb-10 font-weight-bold text-dark">Setup Your Percentage of options on each question</div>
+																	<div class="row">
+																		<div class="col-xl-6">
+																			<!--begin::Input-->
+                                                                            <div class="mb-auto" v-for="(question, index) in questions">
+                                                                                <div class="form-group">
+                                                                                <span class="label label-warning label-pill label-inline mr-2">Pending</span>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <h4>[{ question.title }]</h4>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <div class="form-group row" v-for="(opt, inner) in question.options">
+                                                                                            <div class="input-group input-group-sm">
+                                                                                                <div class="input-group-text col-10">[{opt}]</div>
+                                                                                                <div class="col-2 align-right">
+                                                                                                    <input type="number" min="0" class="form-control" v-model="question.number[inner]"/>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                        <div class="separator separator-solid"></div>
+                                                                            </div>
+																			<!--end::Input-->
+																		</div>
+																	</div>
+																</div>
+																<!--end: Wizard Step 2-->
+																<!--begin: Wizard Step 3-->
+																<div class="pb-5" data-wizard-type="step-content">
+																	<div class="mb-10 font-weight-bold text-dark">Preview the expected result in graphs</div>
+																	<div class="row">
+																		<div class="col-xl-6">
+																			<!--begin::Input-->
+																			<div class="form-group">
+
+																			</div>
+																			<!--end::Input-->
+																		</div>
+																	</div>
+																</div>
+																<!--end: Wizard Step 3-->
+																<!--begin: Wizard Step 4-->
+																<div class="pb-5" data-wizard-type="step-content">
+																	<!--begin::Section-->
+																	<h4 class="mb-10 font-weight-bold text-dark">Submit</h4>
+																	<!--end::Section-->
+                                                                    <textarea rows="10" cols="30" id="submitStatus" class="form-control alert-success" v-model="status" readonly>
+                                                                    </textarea>
+																</div>
+																<!--end: Wizard Step 4-->
+																<!--begin: Wizard Actions-->
+																<div class="d-flex justify-content-between border-top mt-5 pt-10">
+																	<div class="mr-2">
+																		<button type="button" id="prev-step" class="btn btn-light-primary font-weight-bolder px-10 py-3" data-wizard-type="action-prev">
+																		<span class="svg-icon svg-icon-md mr-3">
+																			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-left.svg-->
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<polygon points="0 0 24 0 24 24 0 24" />
+																					<rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1" />
+																					<path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
+																				</g>
+																			</svg>
+																			<!--end::Svg Icon-->
+																		</span>Previous</button>
+																	</div>
+																	<div>
+																		<button type="button" class="btn btn-success font-weight-bolder px-10 py-3" data-wizard-type="action-submit">Submit
+																		<span class="svg-icon svg-icon-md ml-3">
+																			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Check.svg-->
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<polygon points="0 0 24 0 24 24 0 24" />
+																					<path d="M6.26193932,17.6476484 C5.90425297,18.0684559 5.27315905,18.1196257 4.85235158,17.7619393 C4.43154411,17.404253 4.38037434,16.773159 4.73806068,16.3523516 L13.2380607,6.35235158 C13.6013618,5.92493855 14.2451015,5.87991302 14.6643638,6.25259068 L19.1643638,10.2525907 C19.5771466,10.6195087 19.6143273,11.2515811 19.2474093,11.6643638 C18.8804913,12.0771466 18.2484189,12.1143273 17.8356362,11.7474093 L14.0997854,8.42665306 L6.26193932,17.6476484 Z" fill="#000000" fill-rule="nonzero" transform="translate(11.999995, 12.000002) rotate(-180.000000) translate(-11.999995, -12.000002)" />
+																				</g>
+																			</svg>
+																			<!--end::Svg Icon-->
+																		</span></button>
+																		<button type="button" id="next-step" class="btn btn-primary font-weight-bolder px-10 py-3" data-wizard-type="action-next">Next
+																		<span class="svg-icon svg-icon-md ml-3">
+																			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<polygon points="0 0 24 0 24 24 0 24" />
+																					<rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1" />
+																					<path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+																				</g>
+																			</svg>
+																			<!--end::Svg Icon-->
+																		</span></button>
+																	</div>
+																</div>
+																<!--end: Wizard Actions-->
+															</form>
+															<!--end: Wizard Form-->
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--end: Wizard Bpdy-->
+										</div>
+										<!--end: Wizard-->
+									</div>
+								</div>
 
 							</div>
 
@@ -69,5 +196,198 @@
 		<!--end::Global Theme Bundle-->
 
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="{{ url_for('static', filename='assets/js/pages/widgets.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/vue.js') }}"></script>
+    <script>
+    $(document).ajaxStart(function (){
+        KTApp.blockPage({
+          overlayColor: '#000000',
+          state: 'primary',
+          message: 'Loading...'
+         });
+    }).ajaxStop(function (){
+        KTApp.unblockPage();
+    });
+    var submission = new Vue({
+        el:"#kt_form",
+        delimiters:['[{', '}]'],
+        data:{
+            status:'Click submit to start the submission.',
+            questions:'',
+        },
+        watch:{
+            status: function (){
+                this.debouncedStatus()
+            }
+        },
+        created:function (){
+            this.debouncedStatus = _.debounce(this.getStatus,500)
+        },
+        methods:{
+            getStatus:function (){
+                this.status += 'Submitting...'
+
+                //ajax submit request to google form
+
+
+            }
+        }
+    })
+
+    var KTWizard4 = function () {
+	// Base elements
+	var _wizardEl;
+	var _formEl;
+	var _wizardObj;
+	var _validations = [];
+
+	// Private functions
+	var _initWizard = function () {
+		// Initialize form wizard
+		_wizardObj = new KTWizard(_wizardEl, {
+			startStep: 1, // initial active step number
+			clickableSteps: false  // allow step clicking
+		});
+
+		// Validation before going to next page
+		_wizardObj.on('change', function (wizard) {
+			if (wizard.getStep() > wizard.getNewStep()) {
+				return; // Skip if stepped back
+			}
+
+			// Validate form before change wizard step
+			var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
+
+			if (validator) {
+				validator.validate().then(function (status) {
+					if (status === 'Valid') {
+						wizard.goTo(wizard.getNewStep());
+
+						KTUtil.scrollTop();
+					} else {
+						Swal.fire({
+							text: "Sorry, looks like there are some errors detected, please try again.",
+							icon: "error",
+							buttonsStyling: false,
+							confirmButtonText: "Ok, got it!",
+							customClass: {
+								confirmButton: "btn font-weight-bold btn-light"
+							}
+						}).then(function () {
+							KTUtil.scrollTop();
+						});
+					}
+				});
+			}
+
+			return false;  // Do not change wizard step, further action will be handled by he validator
+		});
+
+		// Change event
+		_wizardObj.on('changed', function (wizard) {
+			KTUtil.scrollTop();
+		});
+
+		// Submit event
+		_wizardObj.on('submit', function (wizard) {
+
+		});
+	}
+
+	var _initValidation = function () {
+		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+		// Step 1
+		_validations.push(FormValidation.formValidation(
+			_formEl,
+			{
+				fields: {
+					url: {
+						validators: {
+							notEmpty: {
+								message: 'Url is required'
+							},
+                            uri:{
+							    message:'Url is not valid',
+                                allowLocal: false,
+                            },
+                            remote:{
+							    method:'POST',
+                                message:'Fetch Error',
+                                url:'/Api/tool/Form/Get',
+                            }
+						}
+					},
+					No_sub: {
+						validators: {
+							notEmpty: {
+								message: 'Number is required'
+							},
+                            between:{
+							    min:1,
+                                max:100,
+                                message:'The submission number must be between 1 - 100.'
+                            }
+						}
+					},
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					bootstrap: new FormValidation.plugins.Bootstrap()
+				}
+			},
+		).on('core.form.valid', function (){
+		    $.ajax({
+		        method:'POST',
+                dataType:'text',
+                data:{
+		          url:$('#form_url').val()
+                },
+                url:'/Api/tool/Form/Get'
+            }).done(function (response){
+                var list = eval('(' + response + ')');
+                submission.$data.questions = list['list'];
+            })
+        }));
+		// Step 2
+		_validations.push(FormValidation.formValidation(
+			_formEl,
+			{
+				fields: {
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					bootstrap: new FormValidation.plugins.Bootstrap()
+				}
+			}
+		));
+
+		// Step 3
+		_validations.push(FormValidation.formValidation(
+			_formEl,
+			{
+				fields: {
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					bootstrap: new FormValidation.plugins.Bootstrap()
+				}
+			}
+		));
+	}
+
+	return {
+		// public functions
+		init: function () {
+			_wizardEl = KTUtil.getById('kt_wizard');
+			_formEl = KTUtil.getById('kt_form');
+
+			_initWizard();
+			_initValidation();
+		}
+	};
+}();
+
+jQuery(document).ready(function () {
+	KTWizard4.init();
+});
+    </script>
 {% endblock %}
