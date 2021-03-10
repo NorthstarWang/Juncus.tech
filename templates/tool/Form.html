@@ -90,7 +90,7 @@
                                                                                             <div class="input-group input-group-sm">
                                                                                                 <div class="input-group-text col-9">[{opt}]</div>
                                                                                                 <div class="col-3 align-right">
-                                                                                                    <input type="number" min="0" v-bind:max="num" class="form-control" v-on:change="changeStatus(index)" v-model.number.lazy="question.number[inner]"/>
+                                                                                                    <input type="number" min="0" v-bind:max="num" class="form-control" v-on:change="changeStatus(index)" v-model.number="question.number[inner]"/>
                                                                                                 </div>
                                                                                             </div>
                                                                                     </div>
@@ -175,7 +175,7 @@
 													</div>
 												</div>
 											</div>
-											<!--end: Wizard Bpdy-->
+											<!--end: Wizard Body-->
 										</div>
 										<!--end: Wizard-->
 									</div>
@@ -237,7 +237,19 @@
                     }
                 }
 
-            }
+                var stat = true;
+                    for (var i =0;i<this.questions.length;i++){
+                        if(parseInt(this.questions[i]['status'])===0){
+                            stat = false;
+                            break;
+                        }
+                    }
+                    if(stat){
+                        document.getElementById("next-step"). disabled = false;
+                    }else{
+                        document.getElementById("next-step"). disabled = true;
+                    }
+            },
         }
     })
 
