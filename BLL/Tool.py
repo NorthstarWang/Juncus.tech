@@ -71,3 +71,10 @@ def get_form():
             return jsonify({"valid": False})
     else:
         return jsonify({"valid": False})
+
+
+@app.route('/Api/tool/Form/Submit', methods=['Get', 'Post'])
+def submit_form():
+    data = request.form['questions']
+    url = request.form['url']
+    return url

@@ -44,92 +44,126 @@
 													</div>
 												</div>
 											</div>
-											<!--end::Wizard Nav-->
-											<!--begin: Wizard Body-->
-											<div class="card card-custom card-shadowless rounded-top-0">
-												<div class="card-body p-0">
-													<div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
-														<div class="col-xl-12 col-xxl-7">
-															<!--begin: Wizard Form-->
-															<form class="form mt-0 mt-lg-10" id="kt_form">
-																<!--begin: Wizard Step 1-->
-																<div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-																	<div class="mb-10 font-weight-bold text-dark">Enter your Url & Number of submission you expect(Maximum 100)</div>
-																	<!--begin::Input-->
-																	<div class="form-group">
-																		<label>Url</label>
-																		<input type="text" class="form-control form-control-solid form-control-lg" id="form_url" name="url" placeholder="Google form url" />
-																		<span class="form-text text-muted">Please enter your url.</span>
-																	</div>
-																	<!--end::Input-->
-																	<!--begin::Input-->
-																	<div class="form-group">
-																		<label>Number of submission</label>
-                                                                            <input type="text" class="form-control form-control-solid form-control-lg" v-model="num" name="No_sub" placeholder="Number of submission" />
+                                            <!--end::Wizard Nav-->
+                                            <!--begin: Wizard Body-->
+                                            <div class="card card-custom card-shadowless rounded-top-0">
+                                                <div class="card-body p-0">
+                                                    <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                                        <div class="col-xl-12 col-xxl-7">
+                                                            <!--begin: Wizard Form-->
+                                                            <form class="form mt-0 mt-lg-10" id="kt_form">
+                                                                <!--begin: Wizard Step 1-->
+                                                                <div class="pb-5" data-wizard-type="step-content"
+                                                                     data-wizard-state="current">
+                                                                    <div class="mb-auto font-weight-bold text-dark font-size-h4 font-size-lg-h2">
+                                                                        Enter your Url & Number of submission you expect
+                                                                    </div>
+                                                                    <div class="separator separator-solid separator-border-3"></div>
+                                                                    <!--begin::Input-->
+                                                                    <div class="form-group">
+                                                                        <label>Url</label>
+                                                                        <input type="text"
+                                                                               class="form-control form-control-solid form-control-lg"
+                                                                               id="form_url" v-model="url" name="url"
+                                                                               placeholder="Google form url"/>
+                                                                        <span class="form-text text-muted">Please enter your url.</span>
+                                                                    </div>
+                                                                    <!--end::Input-->
+                                                                    <!--begin::Input-->
+                                                                    <div class="form-group">
+                                                                        <label>Number of submission</label>
+                                                                        <input type="text"
+                                                                               class="form-control form-control-solid form-control-lg"
+                                                                               v-model="num" name="No_sub"
+                                                                               placeholder="Number of submission"/>
                                                                         <span class="form-text text-muted">Please enter your expected submission(Max. 100).</span>
-																	</div>
-																	<!--end::Input-->
-																</div>
-																<!--end: Wizard Step 1-->
-																<!--begin: Wizard Step 2-->
-																<div class="pb-5" data-wizard-type="step-content">
-																	<div class="mb-auto font-weight-bold text-dark">Setup Your Percentage of options on each question</div>
-																	<div class="row">
-																		<div class="col-auto">
-																			<!--begin::Input-->
-                                                                            <div class="mb-auto" v-for="(question, index) in questions">
+                                                                    </div>
+                                                                    <!--end::Input-->
+                                                                </div>
+                                                                <!--end: Wizard Step 1-->
+                                                                <!--begin: Wizard Step 2-->
+                                                                <div class="pb-5" data-wizard-type="step-content">
+                                                                    <div class="form-group">
+                                                                        <div class="mb-auto font-weight-bold text-dark font-size-h4 font-size-lg-h2">
+                                                                            Setup Your Percentage of options on each
+                                                                            question
+                                                                        </div>
+                                                                        <div class="separator separator-solid separator-border-3"></div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-auto">
+                                                                            <!--begin::Input-->
+                                                                            <div class="mb-12"
+                                                                                 v-for="(question, index) in questions">
                                                                                 <div class="form-group">
-                                                                                <div class="form-state">
-                                                                                <span class="label label-pill label-inline mr-2" v-bind:class="[!question.status?'label-warning':'label-success']">[{!question.status?"Incomplete":((question.type)==="radio")?"Completed":"Fulfilled"}]</span><span class="label label-info label-inline mr-2">[{question.type}]</span>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <h4>[{ question.title }]</h4>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <div class="form-group row" v-for="(opt, inner) in question.options">
+                                                                                    <div class="form-state">
+                                                                                        <span class="label label-pill label-inline mr-2"
+                                                                                              v-bind:class="[!question.status?'label-warning':'label-success']">[{!question.status?"Incomplete":((question.type)==="radio")?"Completed":"Fulfilled"}]</span><span
+                                                                                            class="label label-info label-inline mr-2">[{question.type}]</span>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <h4>[{ question.title }]</h4>
+                                                                                    </div>
+                                                                                    <div class="col-auto form-group">
+                                                                                        <div class="form-group row"
+                                                                                             v-for="(opt, inner) in question.options">
                                                                                             <div class="input-group input-group-sm">
-                                                                                                <div class="input-group-text col-9">[{opt}]</div>
+                                                                                                <div class="input-group-text col-9">
+                                                                                                    [{opt}]
+                                                                                                </div>
                                                                                                 <div class="col-3 align-right">
-                                                                                                    <input type="number" min="0" v-bind:max="num" class="form-control" v-on:change="changeStatus(index)" v-model.number="question.number[inner]"/>
+                                                                                                    <input type="number"
+                                                                                                           min="0"
+                                                                                                           v-bind:max="num"
+                                                                                                           class="form-control"
+                                                                                                           style="min-width: 50px"
+                                                                                                           v-on:change="changeStatus(index)"
+                                                                                                           v-model.number="question.number[inner]"/>
                                                                                                 </div>
                                                                                             </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                        <div class="separator separator-solid"></div>
+                                                                                    <div class="separator separator-solid"></div>
                                                                                 </div>
                                                                             </div>
-																			<!--end::Input-->
-																		</div>
-																	</div>
-																</div>
-																<!--end: Wizard Step 2-->
-																<!--begin: Wizard Step 3-->
-																<div class="pb-5" data-wizard-type="step-content">
-																	<div class="mb-10 font-weight-bold text-dark">Preview the expected result in graphs</div>
-																	<div class="row">
-																		<div class="col-xl-6">
-																			<!--begin::Input-->
-																			<div class="form-group">
-
-																			</div>
-																			<!--end::Input-->
-																		</div>
-																	</div>
-																</div>
-																<!--end: Wizard Step 3-->
-																<!--begin: Wizard Step 4-->
-																<div class="pb-5" data-wizard-type="step-content">
-																	<!--begin::Section-->
-																	<h4 class="mb-10 font-weight-bold text-dark">Submit</h4>
-																	<!--end::Section-->
-                                                                    <textarea rows="10" cols="30" id="submitStatus" class="form-control alert-success" v-model="status" readonly>
+                                                                            <!--end::Input-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end: Wizard Step 2-->
+                                                                <!--begin: Wizard Step 3-->
+                                                                <div class="pb-5" data-wizard-type="step-content">
+                                                                    <div class="mb-auto font-weight-bold text-dark font-size-h4 font-size-lg-h2">
+                                                                        Preview the expected result in graphs
+                                                                    </div>
+                                                                    <div class="separator separator-solid separator-border-3"></div>
+                                                                    <div class="form-group" id="chartGroup">
+                                                                        <!--Chart-->
+                                                                    </div>
+                                                                </div>
+                                                                <!--end: Wizard Step 3-->
+                                                                <!--begin: Wizard Step 4-->
+                                                                <div class="pb-5" data-wizard-type="step-content">
+                                                                    <!--begin::Section-->
+                                                                    <h4 class="mb-10 font-weight-bold text-dark">
+                                                                        Submit</h4>
+                                                                    <div class="separator separator-solid separator-border-3"></div>
+                                                                    <div class="form-group">
+                                                                    <textarea rows="10" cols="30" id="submitStatus"
+                                                                              class="form-control alert-success"
+                                                                              v-model="status" readonly>
                                                                     </textarea>
-																</div>
-																<!--end: Wizard Step 4-->
-																<!--begin: Wizard Actions-->
-																<div class="d-flex justify-content-between border-top mt-5 pt-10">
-																	<div class="mr-2">
-																		<button type="button" id="prev-step" class="btn btn-light-primary font-weight-bolder px-10 py-3" data-wizard-type="action-prev">
+                                                                    </div>
+                                                                    <!--end::Section-->
+
+                                                                </div>
+                                                                <!--end: Wizard Step 4-->
+                                                                <!--begin: Wizard Actions-->
+                                                                <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                                                    <div class="mr-2">
+                                                                        <button type="button" id="prev-step"
+                                                                                class="btn btn-light-primary font-weight-bolder px-10 py-3"
+                                                                                data-wizard-type="action-prev">
 																		<span class="svg-icon svg-icon-md mr-3">
 																			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-left.svg-->
 																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -190,35 +224,74 @@
 {% endblock %}
 {% block script %}
 
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
     <!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.js') }}"></script>
-		<script src="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-		<script src="{{ url_for('static', filename='assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/scripts.bundle.js') }}"></script>
 
-		<!--end::Global Theme Bundle-->
+    <!--end::Global Theme Bundle-->
 
-		<!--begin::Page Scripts(used by this page)-->
+    <!--begin::Page Scripts(used by this page)-->
     <script src="{{ url_for('static', filename='assets/js/vue.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/apexcharts.js') }}"></script>
     <script>
-    $(document).ajaxStart(function (){
-        KTApp.blockPage({
-          overlayColor: '#000000',
-          state: 'primary',
-          message: 'Loading...'
-         });
-    }).ajaxStop(function (){
-        KTApp.unblockPage();
-    });
-    var submission = new Vue({
-        el:"#kt_form",
-        delimiters:['[{', '}]'],
-        data:{
-            status:'Click submit to start the submission.',
-            questions:'',
-            num: 1,
-        },
-        methods:{
-            changeStatus: function (index){
+        //BlockUI
+        $(document).ajaxStart(function () {
+            KTApp.blockPage({
+                overlayColor: '#000000',
+                state: 'primary',
+                message: 'Loading...'
+            });
+        }).ajaxStop(function () {
+            KTApp.unblockPage();
+        });
+
+
+        //ApexCharts
+        function generateChart(id, num, opts, type, title) {
+            var options = {
+                chart: {
+                    type: type,
+                    toolbar: {
+                        show: true
+                    }
+                },
+                title: {
+                    text: title
+                },
+                series: num,
+                labels: opts,
+            }
+
+            var chart = new ApexCharts(document.querySelector('#' + id), options);
+            chart.render();
+        }
+
+
+        //Vue.js
+        var submission = new Vue({
+            el: "#kt_form",
+            delimiters: ['[{', '}]'],
+            data: {
+                url:'',
+                status: 'Click submit to start the submission.',
+                questions: '',
+                num: 1,
+            },
+            methods: {
+                changeStatus: function (index) {
                 var sum=0;
                 for (var i = 0;i<this.questions[index]['number'].length;i++){
                     sum+=this.questions[index]['number'][i];
@@ -244,23 +317,23 @@
                             break;
                         }
                     }
-                    if(stat){
-                        document.getElementById("next-step"). disabled = false;
-                    }else{
-                        document.getElementById("next-step"). disabled = true;
+                    if (stat) {
+                        document.getElementById("next-step").disabled = false;
+                    } else {
+                        document.getElementById("next-step").disabled = true;
                     }
+                }
             },
-        }
-    })
+        })
 
-    var KTWizard4 = function () {
-	// Base elements
-	var _wizardEl;
-	var _formEl;
-	var _wizardObj;
-	var _validations = [];
+        var KTWizard4 = function () {
+            // Base elements
+            var _wizardEl;
+            var _formEl;
+            var _wizardObj;
+            var _validations = [];
 
-	// Private functions
+            // Private functions
 	var _initWizard = function () {
 		// Initialize form wizard
 		_wizardObj = new KTWizard(_wizardEl, {
@@ -309,7 +382,15 @@
 
 		// Submit event
 		_wizardObj.on('submit', function (wizard) {
-
+		    var getting = {
+                url: '/Api/tool/Form/Submit',
+                dataType: 'text',
+                success: function (res) {
+                    console.log(res);
+                    $.ajax(getting);
+                }
+            }
+            $.ajax(getting)
 		});
 	}
 
@@ -359,7 +440,7 @@
 		        method:'POST',
                 dataType:'text',
                 data:{
-		          url:$('#form_url').val()
+		          url:submission.$data.url
                 },
                 url:'/Api/tool/Form/Get'
             }).done(function (response){
@@ -368,27 +449,45 @@
             })
         }));
 		// Step 2
-		_validations.push(FormValidation.formValidation(
-			_formEl,
-			{
-				fields: {
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap()
-				}
-			}
-		));
+        _validations.push(FormValidation.formValidation(
+            _formEl,
+            {
+                fields: {},
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap()
+                }
+            }
+        ).on('core.form.valid', function () {
+            var questions = submission.$data.questions;
+            var html = document.getElementById("chartGroup");
+            var l = questions.length % 2 ? (questions.length + 1) / 2 : questions.length / 2;
+            for (var i = 0; i < l; i++) {
+                var row = document.createElement('div');
+                row.setAttribute('class', 'row form-group');
+                html.appendChild(row);
+            }
+            for (var i = 0; i < questions.length; i++) {
+                var n = i % 2 ? (i - 1) / 2 : i / 2;
+                var option_number = questions[i]['number'];
+                var option = questions[i]['options']
+                var id_pointer = 'chart' + i.toString();
+                var child = document.createElement('div');
+                child.setAttribute("class", "col-lg-6")
+                child.setAttribute("id", id_pointer);
+                html.children[n].appendChild(child);
+                generateChart(id_pointer, option_number, option, 'donut', questions[i]["title"]);
+            }
+        }));
 
-		// Step 3
-		_validations.push(FormValidation.formValidation(
-			_formEl,
-			{
-				fields: {
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap()
+        // Step 3
+        _validations.push(FormValidation.formValidation(
+            _formEl,
+            {
+                fields: {},
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap()
 				}
 			}
 		));
