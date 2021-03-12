@@ -5,8 +5,8 @@ from flask_socketio import SocketIO,send,emit
 
 app = Flask(__name__)
 app.config["COMPRESS_REGISTER"] = False  # disable default compression of all eligible requests
-squeece = Squeeze()
-squeece.init_app(app)
+squeeze = Squeeze()
+squeeze.init_app(app)
 compress = Compress()
 compress.init_app(app)
 socketio = SocketIO()
