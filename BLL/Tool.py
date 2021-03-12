@@ -136,5 +136,4 @@ def submit_form(array):
         questions = data[1]
         requests.post(url, data=data[0])
         emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
-    emit('message', 'Submissions are Done!')
     disconnect()
