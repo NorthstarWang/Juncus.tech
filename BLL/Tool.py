@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from flask import request, jsonify
 
 from app import app, socketio
-from flask_socketio import emit
+from flask_socketio import emit, disconnect
 
 
 def generateFormData(data, curr, total):
@@ -137,3 +137,4 @@ def submit_form(array):
         requests.post(url, data=data[0])
         emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
     emit('message', 'Submissions are Done!')
+    disconnect()

@@ -396,17 +396,17 @@
             var socket=io();
             socket.once('connect',function (){
                 submission.$data.status += "\nLoading...";
-                socket.emit('submit_connect',data)
-                socket.once('message',data=>{
+                socket.emit('submit_connect',data)}
+                )
+            socket.on('message',data=>{
                     if(data==='Submissions are Done!'){
-                        this.close();
                         submission.$data.status += "\nSubmissions are done!";
+                        this.close();
                     }else{
                         submission.$data.status +='\n'+data.toString();
                     }
 
                 })
-            });
 		});
 	}
 
