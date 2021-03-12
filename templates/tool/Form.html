@@ -398,7 +398,7 @@
                 submission.$data.status += "\nLoading...This might take less than 1 minute to complete, please do not close the window.";
                 socket.emit('submit_connect',data)}
                 )
-            socket.once('disconnect',data=>{
+            socket.once('disconnect',function (){
                         submission.$data.status += "\nSubmissions are done!";
                         this.close();
                 })
