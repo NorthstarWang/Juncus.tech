@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_compress import Compress
 from flask_squeeze import Squeeze
-from flask_socketio import SocketIO,send,emit
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config["COMPRESS_REGISTER"] = False  # disable default compression of all eligible requests
