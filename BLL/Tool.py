@@ -7,13 +7,64 @@ from bs4 import BeautifulSoup
 
 from flask import request, jsonify
 
-from app import app
+from app import app, socketio
+from flask_socketio import emit
+
+
+def generateFormData(data, curr, total):
+    curr += 1
+    remain = total-curr
+    form_data = {}
+    for question in data:
+        new_entry = question['entry'][:-9]
+        if question['type'] == 'radio':
+            for index, num in enumerate(question['number']):
+                if num != 0:
+                    question['number'][index] -= 1
+                    form_data[new_entry] = question['options'][index]
+                    break
+                else:
+                    continue
+        elif question['type'] == 'checkbox':
+            available_options = 0
+            remain_total = 0
+            for num in question['number']:
+                if num != 0:
+                    available_options += 1
+                    remain_total += num
+            if remain == remain_total:
+                for index, num in enumerate(question['number']):
+                    if num != 0:
+                        question['number'][index] -= 1
+                        form_data[new_entry] = question['options'][index]
+                        break
+                    else:
+                        continue
+            elif remain > remain_total + available_options:
+                options = []
+                for index, num in enumerate(question['number']):
+                    if num != 0:
+                        question['number'][index] -= 1
+                        options.append(question['options'][index])
+                form_data[new_entry] = options
+            else:
+                remain -= remain_total
+                options = []
+                for index, num in enumerate(question['number']):
+                    if num != 0 and remain != 0:
+                        question['number'][index] -= 1
+                        remain -= 1
+                        options.append(question['options'][index])
+                    elif remain == 0:
+                        break
+                form_data[new_entry] = options
+    return [form_data, data]
 
 
 def analyse_types(string):
     if string.find("Checkbox") != -1:
         return "checkbox"
-    elif string.find("Radio") != -1 or string.find("Scale")!=-1:
+    elif string.find("Radio") != -1 or string.find("Scale") != -1:
         return "radio"
 
 
@@ -73,8 +124,16 @@ def get_form():
         return jsonify({"valid": False})
 
 
-@app.route('/Api/tool/Form/Submit', methods=['Get', 'Post'])
-def submit_form():
-    data = request.form['questions']
-    url = request.form['url']
-    return url
+@socketio.on('submit_connect')
+def submit_form(array):
+    questions = array['data']['questions']
+    url = array['data']['url']
+    url = url[:-8]+'formResponse'
+    total = array['data']['total']
+    emit('message', 'Processing...\nPlease do not close this window until submissions are done.')
+    for curr_num in range(int(total)):
+        data = generateFormData(questions, curr_num, int(total))
+        questions = data[1]
+        requests.post(url, data=data[0])
+        emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
+    emit('message', 'Submissions are Done!')

@@ -145,9 +145,11 @@
                                                                 <!--begin: Wizard Step 4-->
                                                                 <div class="pb-5" data-wizard-type="step-content">
                                                                     <!--begin::Section-->
+                                                                    <div class="form-group">
                                                                     <h4 class="mb-10 font-weight-bold text-dark">
                                                                         Submit</h4>
                                                                     <div class="separator separator-solid separator-border-3"></div>
+                                                                    </div>
                                                                     <div class="form-group">
                                                                     <textarea rows="10" cols="30" id="submitStatus"
                                                                               class="form-control alert-success"
@@ -246,6 +248,7 @@
     <!--begin::Page Scripts(used by this page)-->
     <script src="{{ url_for('static', filename='assets/js/vue.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/apexcharts.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script>
         //BlockUI
         $(document).ajaxStart(function () {
@@ -382,15 +385,27 @@
 
 		// Submit event
 		_wizardObj.on('submit', function (wizard) {
-		    var getting = {
-                url: '/Api/tool/Form/Submit',
-                dataType: 'text',
-                success: function (res) {
-                    console.log(res);
-                    $.ajax(getting);
-                }
-            }
-            $.ajax(getting)
+		    //Socket.IO
+            var socket=io();
+            socket.on('connect',function (){
+                submission.$data.status += "\nLoading...";
+                socket.emit('submit_connect',{
+                    data:{
+                        url:submission.$data.url,
+                        questions:submission.$data.questions,
+                        total: submission.$data.num
+                    }
+                })
+                socket.on('message',data=>{
+                    if(data==='Submissions are Done!'){
+                        this.close();
+                        submission.$data.status += "\nSubmissions are done!";
+                    }else{
+                        submission.$data.status +='\n'+data.toString();
+                    }
+
+                })
+            });
 		});
 	}
 
