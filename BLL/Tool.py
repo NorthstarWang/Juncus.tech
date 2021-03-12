@@ -132,9 +132,13 @@ def submit_form(array):
     total = array['data']['total']
     emit('message', 'Processing...\nPlease do not close this window until submissions are done.')
     for curr_num in range(int(total)):
-        data = generateFormData(questions, curr_num, int(total))
-        questions = data[1]
-        requests.post(url, data=data[0])
-        emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
+        try:
+            data = generateFormData(questions, curr_num, int(total))
+            questions = data[1]
+            requests.post(url, data=data[0])
+            emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
+        except:
+            emit('message', 'Failure on ' + str(curr_num + 1) + ' form')
+            continue
     emit('message', 'Submissions are Done!')
     disconnect()
