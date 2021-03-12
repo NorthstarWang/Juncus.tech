@@ -386,17 +386,18 @@
 		// Submit event
 		_wizardObj.on('submit', function (wizard) {
 		    //Socket.IO
-            var socket=io();
-            socket.on('connect',function (){
-                submission.$data.status += "\nLoading...";
-                socket.emit('submit_connect',{
+            var data = {
                     data:{
                         url:submission.$data.url,
                         questions:submission.$data.questions,
                         total: submission.$data.num
                     }
-                })
-                socket.on('message',data=>{
+                }
+            var socket=io();
+            socket.once('connect',function (){
+                submission.$data.status += "\nLoading...";
+                socket.emit('submit_connect',data)
+                socket.once('message',data=>{
                     if(data==='Submissions are Done!'){
                         this.close();
                         submission.$data.status += "\nSubmissions are done!";
