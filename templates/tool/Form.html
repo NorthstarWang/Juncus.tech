@@ -400,13 +400,15 @@
                 )
             socket.on('message',data=>{
                     if(data==='Submissions are Done!'){
-                        submission.$data.status += "\nSubmissions are done!";
                         this.close();
                     }else{
                         submission.$data.status +='\n'+data.toString();
                     }
 
                 })
+            socket.once('disconnect',function (){
+                submission.$data.status += "\nSubmissions are done!";
+            })
 		});
 	}
 
