@@ -399,11 +399,7 @@
                 socket.emit('submit_connect',data)}
                 )
             socket.on('message',data=>{
-                    if(data==='Submissions are Done!'){
-                        this.close();
-                    }else{
                         submission.$data.status +='\n'+data.toString();
-                    }
 
                 })
             socket.once('disconnect',function (){

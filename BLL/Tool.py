@@ -137,10 +137,9 @@ def submit_form(array):
                 data = generateFormData(questions, curr_num, int(total))
                 questions = data[1]
                 requests.post(url, data=data[0])
-                emit('message', 'Submitting ' + str(curr_num + 1) + ' form')
+                emit('message', 'Submitted ' + str(curr_num + 1) + ' form')
             except:
                 emit('message', 'Failure on ' + str(curr_num + 1) + ' form')
                 continue
-        emit('message', 'Submissions are Done!')
     except:
         emit('message', 'Error Occurred')
