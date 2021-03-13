@@ -400,10 +400,10 @@
                 )
             socket.on('message',data=>{
                         submission.$data.status +='\n'+data.toString();
-
                 })
-            socket.once('disconnect',function (){
+            socket.once('disconnect',function (reason){
                 submission.$data.status += "\nSubmissions are done!";
+                console.log(reason)
             })
 		});
 	}
