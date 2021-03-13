@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT --workers=5 --worker_class='eventlet' --threads=2 --max_requests=10 --timeout=0 --graceful_timeout=100 --keepalive=10 app:app
+web: gunicorn --bind 0.0.0.0:$PORT --workers=5 --worker-class='eventlet' --threads=2 --max-requests=10 --timeout=0 --graceful-timeout=100 --keepalive=10 app:app
