@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT app:app
+web: gunicorn --bind 0.0.0.0:$PORT --workers=5 --threads=2 --max_requests=10 --timeout=0 --graceful_timeout=100 --keepalive=10 app:app
