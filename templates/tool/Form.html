@@ -393,20 +393,18 @@
                         total: submission.$data.num
                     }
                 }
-            io.on('connection',(socket)=>{
-                socket.once('connect',function (){
+            var socket=io();
+            socket.once('connect',function (){
                 submission.$data.status += "\nLoading...";
                 socket.emit('submit_connect',data)}
                 )
             socket.on('message',data=>{
                         submission.$data.status +='\n'+data.toString();
                 })
-            socket.on('disconnecting',function (reason){
+            socket.once('disconnect',function (reason){
                 submission.$data.status += "\nSubmissions are done!";
                 console.log(reason)
             })
-            })
-
 		});
 	}
 
