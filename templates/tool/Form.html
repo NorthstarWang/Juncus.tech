@@ -401,9 +401,8 @@
             socket.on('message',data=>{
                         submission.$data.status +='\n'+data.toString();
                 })
-            socket.once('disconnect',function (reason){
+            socket.once('disconnect',function (){
                 submission.$data.status += "\nSubmissions are done!";
-                console.log(reason)
             })
 		});
 	}

@@ -141,5 +141,7 @@ def submit_form(array):
             except:
                 emit('message', 'Failure on ' + str(curr_num + 1) + ' form')
                 continue
+        disconnect()
     except:
         emit('message', 'Error Occurred')
+        disconnect()
