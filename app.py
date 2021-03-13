@@ -8,9 +8,9 @@ app.config["COMPRESS_REGISTER"] = False  # disable default compression of all el
 squeeze = Squeeze()
 squeeze.init_app(app)
 compress = Compress()
-compress.init_app(app, cors_allowed_origins="*")
+compress.init_app(app)
 socketio = SocketIO()
-socketio.init_app(app)
+socketio.init_app(app, cors_allowed_origins="*")
 
 import BLL
 
