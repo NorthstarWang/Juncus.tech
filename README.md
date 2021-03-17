@@ -1,6 +1,6 @@
 ## Juncus.tech
 This project is a sample project established on Python+Flask, with calculator function mainly focused on solving Canadian high-school level math problems.
-> **The web app has been deployed on heroku: https://juncus.herokuapp.com/**
+> **The web app has been deployed on heroku: https://juncus-tech.azurewebsites.net**
 
 ## Project Friend-free
 The project is an application that can submit multiple google forms by users' wills. The percentage of choices in each question of the form can be edited by users and users can generate graphs base on those automated submissions.
