@@ -25,11 +25,16 @@ To be able to run the application, **Flask** and **Python** are required.(Recomm
 
 #### **Running**
 
-To run the web app, type following command in command line in your directory,
-
+To run the web app, first change the path of home in venv/pyvenv.cfg, then type following command in command line in your directory,
+For Mac/Linux
 ```
 $ source venv/Scripts/activate
 $ flask run
+```
+For Window(First line of code prevent digital sign check)
+```
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+venv\Scripts\activate
 ```
 
 You will see output similar as below,
