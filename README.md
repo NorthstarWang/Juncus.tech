@@ -13,7 +13,7 @@
 
 Juncus.tech is a python project that built base on Flask framework, with calculator function mainly focused on solving Canadian high-school level math problems and google form automated submitter that is capable of submitting multiple form data to google form response in clicks of button and generating corresponding visualizations from these submissions.
 
-> The web app has been deployed on azure: https://juncus-tech.azurewebsites.net
+> The web app has been deployed on azure: https://juncus.azurewebsites.net/
 
 ## Getting Started
 
